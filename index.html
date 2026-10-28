@@ -1,0 +1,1658 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#111313" />
+    <meta
+      name="description"
+      content="Build for Tomorrow is a 24-hour student hackathon in Bengaluru. Bring your team, build a bold idea, and compete for prizes."
+    />
+    <title>Build for Tomorrow — Student Hackathon 2027</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+        color: #f3f2e9;
+        background: #111313;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        --bg: #111313;
+        --surface: #181c1b;
+        --surface-raised: #1e2321;
+        --line: rgba(235, 239, 222, 0.12);
+        --muted: #a1a99e;
+        --red: #f45b5b;
+        --yellow: #f3cb68;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        overflow-x: clip;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-width: 320px;
+        margin: 0;
+        background:
+          radial-gradient(ellipse at 87% 1%, rgba(190, 53, 53, 0.12), transparent 28rem),
+          var(--bg);
+      }
+
+      a {
+        color: inherit;
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+
+      button,
+      a,
+      input,
+      select,
+      textarea {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      button:focus-visible,
+      a:focus-visible,
+      input:focus-visible,
+      select:focus-visible,
+      textarea:focus-visible {
+        outline: 2px solid var(--yellow);
+        outline-offset: 3px;
+      }
+
+      .container {
+        width: min(1160px, calc(100% - 48px));
+        margin-inline: auto;
+      }
+
+      .topbar {
+        position: relative;
+        z-index: 2;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav {
+        display: flex;
+        min-height: 76px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        color: #f3f2e9;
+        font-size: 13px;
+        font-weight: 750;
+        letter-spacing: 0.13em;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        border-radius: 9px;
+        background: var(--yellow);
+        color: #28200e;
+      }
+
+      .brand-mark svg {
+        width: 19px;
+        height: 19px;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .nav-links a {
+        color: #b7bdb4;
+        font-size: 13px;
+        text-decoration: none;
+        transition: color 150ms ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--yellow);
+      }
+
+      .nav-cta,
+      .button {
+        display: inline-flex;
+        min-height: 45px;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        padding: 0 18px;
+        border: 0;
+        border-radius: 7px;
+        background: var(--red);
+        color: #fff8f5;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 750;
+        text-decoration: none;
+        transition: background 150ms ease, transform 150ms ease;
+      }
+
+      .nav-cta:hover,
+      .button:hover {
+        background: #ff7770;
+        transform: translateY(-1px);
+      }
+
+      .button svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .hero {
+        position: relative;
+        isolation: isolate;
+        display: grid;
+        min-height: 620px;
+        align-items: center;
+        grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+        gap: 64px;
+        padding-block: 74px 84px;
+      }
+
+      .hero::before {
+        position: absolute;
+        z-index: -1;
+        inset-block: 0;
+        inset-inline: calc((100% - 100vw) / 2);
+        border-bottom: 1px solid rgba(255, 239, 218, 0.2);
+        background:
+          radial-gradient(ellipse at 82% 18%, rgba(255, 174, 76, 0.55), transparent 34rem),
+          linear-gradient(118deg, #a92e32 0%, #d4482e 54%, #ed702f 100%);
+        content: "";
+      }
+
+      .hero-copy {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero .event-pill {
+        border-color: rgba(255, 244, 224, 0.4);
+        background: rgba(92, 26, 22, 0.18);
+        color: #fff0d9;
+      }
+
+      .hero .event-pill span {
+        background: var(--yellow);
+        box-shadow: 0 0 12px rgba(243, 203, 104, 0.8);
+      }
+
+      .event-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 9px 12px;
+        border: 1px solid rgba(244, 91, 91, 0.3);
+        border-radius: 999px;
+        background: rgba(244, 91, 91, 0.07);
+        color: #ffc0b8;
+        font-size: 11px;
+        font-weight: 650;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .event-pill span {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--red);
+        box-shadow: 0 0 12px rgba(244, 91, 91, 0.75);
+      }
+
+      .hero h1 {
+        max-width: 700px;
+        margin: 24px 0 19px;
+        font-size: clamp(56px, 8vw, 94px);
+        font-weight: 760;
+        letter-spacing: -0.085em;
+        line-height: 0.96;
+      }
+
+      .hero h1 em {
+        color: #ffd27b;
+        font-style: normal;
+      }
+
+      .hero-description {
+        max-width: 530px;
+        margin: 0;
+        color: #fff0e4;
+        font-size: 16px;
+        line-height: 1.75;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 14px;
+        margin-top: 30px;
+      }
+
+      .hero .button {
+        background: #f3cb68;
+        color: #392015;
+      }
+
+      .hero .button:hover {
+        background: #ffdf91;
+      }
+
+      .button-secondary {
+        min-height: 45px;
+        padding: 0 17px;
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        color: #e9e9df;
+        font-size: 13px;
+        font-weight: 650;
+        text-decoration: none;
+        transition: border-color 150ms ease, background 150ms ease;
+      }
+
+      .button-secondary:hover {
+        border-color: rgba(244, 91, 91, 0.45);
+        background: rgba(244, 91, 91, 0.06);
+      }
+
+      .hero .button-secondary {
+        border-color: rgba(255, 244, 224, 0.48);
+        color: #fff8ee;
+      }
+
+      .hero .button-secondary:hover {
+        border-color: #fff1d2;
+        background: rgba(255, 243, 220, 0.1);
+      }
+
+      .hero-note {
+        margin: 15px 0 0;
+        color: #ffe0ca;
+        font-size: 11px;
+      }
+
+      .hero-art {
+        position: relative;
+        display: grid;
+        min-height: 385px;
+        place-items: center;
+      }
+
+      .orbit {
+        position: absolute;
+        width: min(100%, 380px);
+        aspect-ratio: 1;
+        border: 1px solid rgba(255, 243, 222, 0.3);
+        border-radius: 50%;
+      }
+
+      .orbit::before,
+      .orbit::after {
+        position: absolute;
+        border: 1px solid rgba(255, 243, 222, 0.2);
+        border-radius: 50%;
+        content: "";
+        inset: 34px;
+      }
+
+      .orbit::after {
+        inset: 72px;
+      }
+
+      .art-core {
+        position: relative;
+        display: grid;
+        width: 205px;
+        aspect-ratio: 1;
+        place-items: center;
+        border: 1px solid rgba(255, 222, 160, 0.7);
+        border-radius: 29% 71% 64% 36% / 39% 37% 63% 61%;
+        background: radial-gradient(circle at 34% 26%, #ffe1a0, #fa9b50 50%, #db4432 100%);
+        box-shadow: 0 0 80px rgba(255, 200, 108, 0.25), inset -16px -16px 40px rgba(97, 33, 22, 0.28);
+        color: #361416;
+        transform: rotate(-12deg);
+      }
+
+      .art-core svg {
+        width: 94px;
+        height: 94px;
+        transform: rotate(12deg);
+      }
+
+      .art-label {
+        position: absolute;
+        padding: 10px 12px;
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        background: rgba(24, 28, 27, 0.92);
+        color: #dfe4d9;
+        font-size: 11px;
+        font-weight: 650;
+        letter-spacing: 0.02em;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .art-label.one {
+        top: 37px;
+        right: 3px;
+      }
+
+      .art-label.two {
+        bottom: 56px;
+        left: 0;
+      }
+
+      .art-label.three {
+        right: 2px;
+        bottom: 30px;
+        color: #ffaaa0;
+      }
+
+      .hero-meta {
+        display: grid;
+        grid-column: 1 / -1;
+        grid-template-columns: repeat(3, 1fr);
+        margin-top: -6px;
+        border-block: 1px solid rgba(255, 243, 222, 0.27);
+      }
+
+      .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 21px 22px;
+      }
+
+      .meta-item + .meta-item {
+        border-left: 1px solid rgba(255, 243, 222, 0.27);
+      }
+
+      .meta-icon {
+        display: grid;
+        width: 38px;
+        height: 38px;
+        flex: 0 0 auto;
+        place-items: center;
+        border: 1px solid rgba(255, 243, 222, 0.38);
+        border-radius: 9px;
+        color: #ffe09a;
+      }
+
+      .meta-icon svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .meta-label {
+        margin: 0 0 5px;
+        color: #ffddc3;
+        font-size: 10px;
+        font-weight: 650;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+      }
+
+      .meta-value {
+        margin: 0;
+        color: #fffaf1;
+        font-size: 13px;
+        font-weight: 650;
+      }
+
+      .section {
+        padding-block: 92px;
+        border-top: 1px solid var(--line);
+      }
+
+      .section-heading {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 28px;
+        margin-bottom: 35px;
+      }
+
+      .section-kicker {
+        margin: 0 0 11px;
+        color: var(--yellow);
+        font-size: 10px;
+        font-weight: 750;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .section-heading h2 {
+        margin: 0;
+        font-size: clamp(34px, 5vw, 49px);
+        font-weight: 690;
+        letter-spacing: -0.065em;
+        line-height: 1.04;
+      }
+
+      .section-heading > p {
+        max-width: 380px;
+        margin: 0 0 2px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .tracks-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .track-card {
+        min-height: 220px;
+        padding: 23px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.008));
+        transition: border-color 160ms ease, transform 160ms ease;
+      }
+
+      .track-card:hover {
+        border-color: rgba(244, 91, 91, 0.42);
+        transform: translateY(-3px);
+      }
+
+      .track-card:nth-child(even):hover {
+        border-color: rgba(243, 203, 104, 0.5);
+      }
+
+      .track-number {
+        display: inline-grid;
+        width: 32px;
+        height: 32px;
+        place-items: center;
+        border: 1px solid rgba(244, 91, 91, 0.3);
+        border-radius: 8px;
+        color: var(--red);
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .track-card:nth-child(even) .track-number {
+        border-color: rgba(243, 203, 104, 0.35);
+        color: var(--yellow);
+      }
+
+      .track-card h3 {
+        margin: 27px 0 9px;
+        font-size: 17px;
+        font-weight: 650;
+        letter-spacing: -0.025em;
+      }
+
+      .track-card p {
+        margin: 0;
+        color: #9da69b;
+        font-size: 12px;
+        line-height: 1.65;
+      }
+
+      .prizes-section {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), transparent 80%);
+      }
+
+      .prize-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+        gap: 18px;
+      }
+
+      .grand-prize {
+        position: relative;
+        display: flex;
+        min-height: 300px;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+        padding: 31px;
+        border: 1px solid rgba(244, 91, 91, 0.38);
+        border-radius: 11px;
+        background:
+          radial-gradient(circle at 83% 24%, rgba(244, 91, 91, 0.19), transparent 190px),
+          #2a1c1c;
+      }
+
+      .grand-prize::after {
+        position: absolute;
+        right: -78px;
+        bottom: -156px;
+        width: 310px;
+        height: 310px;
+        border: 1px solid rgba(244, 91, 91, 0.18);
+        border-radius: 50%;
+        box-shadow: 0 0 0 25px rgba(244, 91, 91, 0.04), 0 0 0 52px rgba(244, 91, 91, 0.04);
+        content: "";
+      }
+
+      .prize-label {
+        position: relative;
+        z-index: 1;
+        display: inline-flex;
+        width: fit-content;
+        align-items: center;
+        gap: 8px;
+        color: #ffc0b8;
+        font-size: 10px;
+        font-weight: 750;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      .prize-label svg {
+        width: 17px;
+        height: 17px;
+      }
+
+      .grand-prize-amount {
+        position: relative;
+        z-index: 1;
+        margin: 25px 0 5px;
+        color: var(--yellow);
+        font-size: clamp(58px, 8vw, 86px);
+        font-weight: 750;
+        letter-spacing: -0.09em;
+        line-height: 1;
+      }
+
+      .grand-prize-copy {
+        position: relative;
+        z-index: 1;
+        margin: 0;
+        color: #d4d9c9;
+        font-size: 13px;
+      }
+
+      .runner-prizes {
+        display: grid;
+        gap: 14px;
+      }
+
+      .runner-card {
+        display: flex;
+        min-height: 143px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 23px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--surface);
+      }
+
+      .runner-card:first-child {
+        border-color: rgba(243, 203, 104, 0.2);
+      }
+
+      .runner-card:last-child {
+        border-color: rgba(244, 91, 91, 0.2);
+      }
+
+      .runner-card h3 {
+        margin: 0 0 7px;
+        color: #a5ada2;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .runner-card p {
+        margin: 0;
+        color: #f0f0e7;
+        font-size: 29px;
+        font-weight: 700;
+        letter-spacing: -0.06em;
+      }
+
+      .runner-card:first-child p,
+      .runner-card:first-child .runner-badge {
+        color: var(--yellow);
+      }
+
+      .runner-card:last-child p,
+      .runner-card:last-child .runner-badge {
+        color: var(--red);
+      }
+
+      .runner-card small {
+        display: block;
+        margin-top: 6px;
+        color: #8d968a;
+        font-size: 11px;
+        letter-spacing: normal;
+      }
+
+      .runner-badge {
+        display: grid;
+        width: 43px;
+        height: 43px;
+        flex: 0 0 auto;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        color: #d6c49b;
+        font-size: 13px;
+        font-weight: 750;
+      }
+
+      .category-awards {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 14px;
+      }
+
+      .category-award {
+        padding: 17px 18px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.018);
+      }
+
+      .category-award:nth-child(odd) {
+        border-top-color: rgba(244, 91, 91, 0.5);
+      }
+
+      .category-award:nth-child(even) {
+        border-top-color: rgba(243, 203, 104, 0.5);
+      }
+
+      .category-award span {
+        display: block;
+        margin-bottom: 8px;
+        color: #9ea79a;
+        font-size: 11px;
+      }
+
+      .category-award strong {
+        color: var(--yellow);
+        font-size: 17px;
+      }
+
+      .category-award:nth-child(odd) strong {
+        color: var(--red);
+      }
+
+      .prize-footnote {
+        margin: 15px 0 0;
+        color: #858e82;
+        font-size: 11px;
+        line-height: 1.6;
+      }
+
+      .schedule-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0;
+        margin-top: 36px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--surface);
+      }
+
+      .schedule-item {
+        position: relative;
+        min-height: 148px;
+        padding: 23px 20px;
+      }
+
+      .schedule-item + .schedule-item {
+        border-left: 1px solid var(--line);
+      }
+
+      .schedule-time {
+        margin: 0 0 17px;
+        color: var(--yellow);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+      }
+
+      .schedule-item h3 {
+        margin: 0 0 7px;
+        font-size: 14px;
+        font-weight: 650;
+      }
+
+      .schedule-item p:last-child {
+        margin: 0;
+        color: #929b90;
+        font-size: 11px;
+        line-height: 1.6;
+      }
+
+      .details-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 18px;
+        align-items: start;
+      }
+
+      .info-card {
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--surface);
+      }
+
+      .info-card h3 {
+        margin: 0 0 20px;
+        font-size: 18px;
+        font-weight: 650;
+        letter-spacing: -0.03em;
+      }
+
+      .info-list {
+        display: grid;
+        gap: 0;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .info-list li {
+        display: grid;
+        grid-template-columns: 21px 1fr;
+        gap: 11px;
+        padding: 13px 0;
+        border-top: 1px solid var(--line);
+        color: #b8beb4;
+        font-size: 12px;
+        line-height: 1.65;
+      }
+
+      .info-list svg {
+        width: 17px;
+        height: 17px;
+        margin-top: 1px;
+        color: var(--red);
+      }
+
+      .info-list strong {
+        color: #f0f0e7;
+        font-weight: 650;
+      }
+
+      .guidelines-note {
+        margin: 18px 0 0;
+        padding: 14px;
+        border-left: 2px solid var(--yellow);
+        background: rgba(243, 203, 104, 0.06);
+        color: #c4b99e;
+        font-size: 11px;
+        line-height: 1.65;
+      }
+
+      .register-section {
+        padding-block: 92px 100px;
+        border-top: 1px solid var(--line);
+        background:
+          radial-gradient(ellipse at 0% 50%, rgba(244, 91, 91, 0.07), transparent 34rem),
+          #141716;
+      }
+
+      .register-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+        gap: 70px;
+        align-items: start;
+      }
+
+      .register-intro {
+        position: sticky;
+        top: 25px;
+      }
+
+      .register-intro h2 {
+        margin: 0;
+        font-size: clamp(37px, 5vw, 54px);
+        font-weight: 700;
+        letter-spacing: -0.075em;
+        line-height: 1;
+      }
+
+      .register-intro > p:not(.section-kicker) {
+        max-width: 360px;
+        margin: 18px 0 25px;
+        color: #a5ada2;
+        font-size: 13px;
+        line-height: 1.75;
+      }
+
+      .register-deadline {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        color: #ffc0b8;
+        font-size: 12px;
+        font-weight: 650;
+      }
+
+      .register-deadline svg {
+        width: 17px;
+        height: 17px;
+      }
+
+      .registration-form {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px 15px;
+        padding: 27px;
+        border: 1px solid var(--line);
+        border-radius: 11px;
+        background: #1a1e1c;
+      }
+
+      .form-field {
+        display: grid;
+        gap: 8px;
+      }
+
+      .form-field.full {
+        grid-column: 1 / -1;
+      }
+
+      .form-field label {
+        color: #d5d9d0;
+        font-size: 11px;
+        font-weight: 650;
+      }
+
+      .form-field label span {
+        color: #8c9589;
+        font-weight: 450;
+      }
+
+      .form-field input,
+      .form-field select,
+      .form-field textarea {
+        width: 100%;
+        min-height: 45px;
+        padding: 11px 12px;
+        border: 1px solid rgba(235, 239, 222, 0.14);
+        border-radius: 6px;
+        background: #131615;
+        color: #f0f0e7;
+        font-size: 12px;
+      }
+
+      .form-field textarea {
+        min-height: 82px;
+        resize: vertical;
+      }
+
+      .form-field input::placeholder,
+      .form-field textarea::placeholder {
+        color: #687167;
+      }
+
+      .form-field select:invalid {
+        color: #838b80;
+      }
+
+      .form-field option {
+        color: #f0f0e7;
+      }
+
+      .consent {
+        display: flex;
+        grid-column: 1 / -1;
+        align-items: flex-start;
+        gap: 10px;
+        color: #a7afa3;
+        font-size: 11px;
+        line-height: 1.6;
+      }
+
+      .consent input {
+        width: 15px;
+        height: 15px;
+        flex: 0 0 auto;
+        margin: 1px 0 0;
+        accent-color: var(--red);
+      }
+
+      .submit-button {
+        grid-column: 1 / -1;
+        width: 100%;
+      }
+
+      .form-response {
+        min-height: 19px;
+        grid-column: 1 / -1;
+        margin: -7px 0 0;
+        color: var(--yellow);
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .form-disclaimer {
+        grid-column: 1 / -1;
+        margin: -9px 0 0;
+        color: #747d72;
+        font-size: 10px;
+        line-height: 1.6;
+      }
+
+      .footer {
+        border-top: 1px solid var(--line);
+      }
+
+      .footer-inner {
+        display: flex;
+        min-height: 76px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        color: #828b80;
+        font-size: 11px;
+      }
+
+      .footer-inner p {
+        margin: 0;
+      }
+
+      .footer-inner a {
+        color: #c3cabe;
+        text-decoration-color: rgba(195, 202, 190, 0.35);
+        text-underline-offset: 3px;
+      }
+
+      .footer-inner a:hover {
+        color: var(--yellow);
+        text-decoration-color: var(--red);
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 20px;
+      }
+
+      @media (max-width: 900px) {
+        .hero {
+          min-height: 550px;
+          gap: 22px;
+        }
+
+        .hero-art {
+          min-height: 310px;
+        }
+
+        .art-core {
+          width: 165px;
+        }
+
+        .tracks-grid,
+        .category-awards {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .register-layout {
+          gap: 38px;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .container {
+          width: min(100% - 36px, 520px);
+        }
+
+        .nav {
+          min-height: 66px;
+        }
+
+        .brand {
+          font-size: 11px;
+        }
+
+        .brand-mark {
+          width: 31px;
+          height: 31px;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .nav-cta {
+          min-height: 39px;
+          padding-inline: 13px;
+          font-size: 11px;
+        }
+
+        .hero {
+          min-height: 0;
+          grid-template-columns: 1fr;
+          gap: 12px;
+          padding-block: 58px 48px;
+        }
+
+        .hero h1 {
+          max-width: 500px;
+          font-size: clamp(58px, 16vw, 82px);
+        }
+
+        .hero-description {
+          font-size: 14px;
+        }
+
+        .hero-art {
+          min-height: 275px;
+          margin-top: 4px;
+        }
+
+        .orbit {
+          width: 260px;
+        }
+
+        .art-core {
+          width: 145px;
+        }
+
+        .art-core svg {
+          width: 72px;
+          height: 72px;
+        }
+
+        .art-label.one {
+          top: 12px;
+          right: calc(50% - 150px);
+        }
+
+        .art-label.two {
+          bottom: 26px;
+          left: calc(50% - 152px);
+        }
+
+        .art-label.three {
+          right: calc(50% - 148px);
+          bottom: 12px;
+        }
+
+        .hero-meta {
+          grid-template-columns: 1fr;
+          margin-top: 0;
+        }
+
+        .meta-item {
+          padding: 15px 7px;
+        }
+
+        .meta-item + .meta-item {
+          border-top: 1px solid var(--line);
+          border-left: 0;
+        }
+
+        .section {
+          padding-block: 66px;
+        }
+
+        .section-heading {
+          display: block;
+          margin-bottom: 26px;
+        }
+
+        .section-heading > p {
+          margin-top: 14px;
+        }
+
+        .tracks-grid {
+          gap: 10px;
+        }
+
+        .track-card {
+          min-height: 205px;
+          padding: 17px;
+        }
+
+        .track-card h3 {
+          margin-top: 22px;
+          font-size: 15px;
+        }
+
+        .track-card p {
+          font-size: 11px;
+        }
+
+        .prize-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .grand-prize {
+          min-height: 255px;
+          padding: 25px;
+        }
+
+        .runner-prizes {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .runner-card {
+          min-height: 133px;
+          padding: 16px;
+        }
+
+        .runner-card p {
+          font-size: 25px;
+        }
+
+        .runner-badge {
+          width: 35px;
+          height: 35px;
+          font-size: 11px;
+        }
+
+        .category-award {
+          padding: 14px;
+        }
+
+        .schedule-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .schedule-item {
+          min-height: 140px;
+          padding: 17px 14px;
+        }
+
+        .schedule-item + .schedule-item {
+          border-left: 0;
+        }
+
+        .schedule-item:nth-child(even) {
+          border-left: 1px solid var(--line);
+        }
+
+        .schedule-item:nth-child(n + 3) {
+          border-top: 1px solid var(--line);
+        }
+
+        .details-grid {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+
+        .info-card {
+          padding: 22px;
+        }
+
+        .register-section {
+          padding-block: 67px;
+        }
+
+        .register-layout {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+
+        .register-intro {
+          position: static;
+        }
+
+        .registration-form {
+          gap: 15px 11px;
+          padding: 19px;
+        }
+
+        .footer-inner {
+          min-height: 92px;
+          flex-wrap: wrap;
+          justify-content: center;
+          padding-block: 18px;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 390px) {
+        .category-award {
+          padding: 12px;
+        }
+
+        .category-award strong {
+          font-size: 15px;
+        }
+
+        .runner-prizes {
+          grid-template-columns: 1fr;
+        }
+
+        .runner-card {
+          min-height: 105px;
+        }
+
+        .registration-form {
+          grid-template-columns: 1fr;
+        }
+
+        .form-field.full,
+        .consent,
+        .submit-button,
+        .form-response,
+        .form-disclaimer {
+          grid-column: 1;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <nav class="nav container" aria-label="Main navigation">
+        <a class="brand" href="#home" aria-label="Build for Tomorrow home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M13.2 2.8 5.7 13h5.1l-.7 8.2L18.3 11h-5.2l.1-8.2Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+          <span>Build for Tomorrow</span>
+        </a>
+        <div class="nav-links">
+          <a href="#tracks">Tracks</a>
+          <a href="#prizes">Prizes</a>
+          <a href="#details">Event details</a>
+        </div>
+        <a class="nav-cta" href="#register">Register your team <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero container" id="home" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <div class="event-pill"><span aria-hidden="true"></span> Student hackathon · Bengaluru</div>
+          <h1 id="hero-title">Make ideas<br />move <em>forward.</em></h1>
+          <p class="hero-description">
+            One weekend. A room full of makers. Build something useful for the world we want to live in.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#register">
+              Claim your team spot
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+            <a class="button-secondary" href="#details">Explore the event</a>
+          </div>
+          <p class="hero-note">Free to enter · Bring a team of 2–4 · All skill levels welcome</p>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit"></div>
+          <div class="art-core">
+            <svg viewBox="0 0 100 100" fill="none">
+              <path d="M50 12v15m0 46v15M12 50h15m46 0h15M23.1 23.1l10.6 10.6m32.6 32.6 10.6 10.6m0-53.8L66.9 33.7M33.7 66.3 23.1 76.9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+              <path d="m50 29 5.5 15.5L71 50l-15.5 5.5L50 71l-5.5-15.5L29 50l15.5-5.5L50 29Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" />
+              <circle cx="50" cy="50" r="5" fill="currentColor" />
+            </svg>
+          </div>
+          <div class="art-label one">01 / Imagine</div>
+          <div class="art-label two">02 / Build</div>
+          <div class="art-label three">03 / Impact</div>
+        </div>
+
+        <div class="hero-meta" aria-label="Event summary">
+          <div class="meta-item">
+            <span class="meta-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <rect x="3.5" y="5" width="17" height="16" rx="2" stroke="currentColor" stroke-width="1.6" />
+                <path d="M7.5 3v4m9-4v4M3.5 9.5h17M8 13h2m4 0h2m-8 4h2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+              </svg>
+            </span>
+            <div><p class="meta-label">When</p><p class="meta-value">16–17 January 2027</p></div>
+          </div>
+          <div class="meta-item">
+            <span class="meta-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+                <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.6" />
+              </svg>
+            </span>
+            <div><p class="meta-label">Where</p><p class="meta-value">BMSIT, Bengaluru</p></div>
+          </div>
+          <div class="meta-item">
+            <span class="meta-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" />
+                <path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+              </svg>
+            </span>
+            <div><p class="meta-label">Build time</p><p class="meta-value">24 hours · In person</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section container" id="tracks" aria-labelledby="tracks-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Pick a problem worth solving</p>
+            <h2 id="tracks-title">Four tracks. Endless possibilities.</h2>
+          </div>
+          <p>Choose one theme to guide your build. We care about thoughtful ideas, useful prototypes, and the people they help.</p>
+        </div>
+        <div class="tracks-grid">
+          <article class="track-card">
+            <span class="track-number">01</span>
+            <h3>AI for good</h3>
+            <p>Build human-centered AI tools for learning, accessibility, public services, or everyday work.</p>
+          </article>
+          <article class="track-card">
+            <span class="track-number">02</span>
+            <h3>Climate &amp; sustainability</h3>
+            <p>Make it easier to save energy, reduce waste, protect nature, or build resilient communities.</p>
+          </article>
+          <article class="track-card">
+            <span class="track-number">03</span>
+            <h3>Health &amp; wellbeing</h3>
+            <p>Explore practical, inclusive approaches to personal wellness and better access to care.</p>
+          </article>
+          <article class="track-card">
+            <span class="track-number">04</span>
+            <h3>Open innovation</h3>
+            <p>Got a great idea that does not fit a box? Surprise us with a solution that matters.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section prizes-section" id="prizes" aria-labelledby="prizes-title">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Good ideas deserve a launchpad</p>
+              <h2 id="prizes-title">Build it. Pitch it. Win it.</h2>
+            </div>
+            <p>Prizes recognize the overall winners and standout projects in each challenge track.</p>
+          </div>
+          <div class="prize-layout">
+            <article class="grand-prize">
+              <span class="prize-label">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M8 4h8v4a4 4 0 0 1-8 0V4Zm0 2H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4m-4 0v5m-4 3h8m-7-3h6v3H9v-3Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                Overall winner · team prize
+              </span>
+              <div>
+                <p class="grand-prize-amount">₹50,000</p>
+                <p class="grand-prize-copy">First place · plus mentor hours to take your idea further</p>
+              </div>
+            </article>
+            <div class="runner-prizes">
+              <article class="runner-card">
+                <div><h3>Second place</h3><p>₹25,000<small>Team prize</small></p></div>
+                <span class="runner-badge" aria-hidden="true">02</span>
+              </article>
+              <article class="runner-card">
+                <div><h3>Third place</h3><p>₹15,000<small>Team prize</small></p></div>
+                <span class="runner-badge" aria-hidden="true">03</span>
+              </article>
+            </div>
+          </div>
+          <div class="category-awards" aria-label="Track awards">
+            <div class="category-award"><span>AI for good</span><strong>₹5,000</strong></div>
+            <div class="category-award"><span>Climate &amp; sustainability</span><strong>₹5,000</strong></div>
+            <div class="category-award"><span>Health &amp; wellbeing</span><strong>₹5,000</strong></div>
+            <div class="category-award"><span>Open innovation</span><strong>₹5,000</strong></div>
+          </div>
+          <p class="prize-footnote">All prize amounts and benefits shown are sample event details, subject to final organizer confirmation. Track awards are separate from overall prizes.</p>
+        </div>
+      </section>
+
+      <section class="section container" id="schedule" aria-labelledby="schedule-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">A weekend with purpose</p>
+            <h2 id="schedule-title">The 24-hour sprint.</h2>
+          </div>
+          <p>A sample schedule to help teams plan. Final timings and venue access details will be shared with registered teams.</p>
+        </div>
+        <div class="schedule-grid">
+          <article class="schedule-item">
+            <p class="schedule-time">DAY 01 · 09:00 AM</p>
+            <h3>Check-in &amp; kickoff</h3>
+            <p>Meet your fellow makers, hear the challenge, and get set up.</p>
+          </article>
+          <article class="schedule-item">
+            <p class="schedule-time">DAY 01 · 11:00 AM</p>
+            <h3>Build begins</h3>
+            <p>Form your plan, meet mentors, and turn your idea into a prototype.</p>
+          </article>
+          <article class="schedule-item">
+            <p class="schedule-time">DAY 02 · 11:00 AM</p>
+            <h3>Submit &amp; demo</h3>
+            <p>Share your working build and explain who it helps.</p>
+          </article>
+          <article class="schedule-item">
+            <p class="schedule-time">DAY 02 · 03:00 PM</p>
+            <h3>Finals &amp; awards</h3>
+            <p>Finalist pitches, judge feedback, prizes, and a closing celebration.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section container" id="details" aria-labelledby="details-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Everything you need to know</p>
+            <h2 id="details-title">The details, made simple.</h2>
+          </div>
+          <p>We want everyone to have a fair, welcoming, and fun weekend. Please read the sample event requirements before signing up.</p>
+        </div>
+        <div class="details-grid">
+          <article class="info-card">
+            <h3>Registration &amp; eligibility</h3>
+            <ul class="info-list">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                <span><strong>Who can join:</strong> Current undergraduate or postgraduate students from any recognized institution.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                <span><strong>Team size:</strong> 2–4 students. One person should register as the team lead.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                <span><strong>Entry fee:</strong> Free for all selected participants. In-person attendance is required.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                <span><strong>Apply by:</strong> 10 January 2027. Places are limited; registration is subject to confirmation.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                <span><strong>Bring along:</strong> Student ID, laptop, charger, and any hardware your team needs.</span>
+              </li>
+            </ul>
+          </article>
+          <article class="info-card">
+            <h3>Build guidelines</h3>
+            <ul class="info-list">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                <span>Build a new project during the event. Existing libraries and open-source tools are welcome; disclose what you use.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                <span>Submit a working demo, source-code link, short project description, and a clear team contribution summary.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                <span>Use only data and assets you have permission to use. Protect personal information and respect intellectual property.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                <span>Judging considers usefulness, originality, technical execution, responsible design, and the quality of your demo.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                <span>Be kind and inclusive. Harassment, unsafe projects, or unfair conduct can result in disqualification.</span>
+              </li>
+            </ul>
+            <p class="guidelines-note">Sample event plan: organizers should confirm the final rules, accessibility and accommodation process, campus access, and judging details before publishing.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="register-section" id="register" aria-labelledby="register-title">
+        <div class="register-layout container">
+          <div class="register-intro">
+            <p class="section-kicker">Make your weekend count</p>
+            <h2 id="register-title">Bring your people. Build your idea.</h2>
+            <p>Tell us a little about your team. Your registration will be saved by the event server.</p>
+            <span class="register-deadline">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="3.5" y="5" width="17" height="16" rx="2" stroke="currentColor" stroke-width="1.6" />
+                <path d="M7.5 3v4m9-4v4M3.5 9.5h17m4.5 3.5h-3l-2 3-2-6-2 3h-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              Sample deadline: 10 January 2027
+            </span>
+          </div>
+
+          <form class="registration-form" id="registration-form">
+            <div class="form-field">
+              <label for="team-name">Team name</label>
+              <input id="team-name" name="team-name" type="text" placeholder="e.g. The Bright Sparks" autocomplete="organization" required />
+            </div>
+            <div class="form-field">
+              <label for="team-size">Team size</label>
+              <select id="team-size" name="team-size" required>
+                <option value="" selected disabled>Select team size</option>
+                <option value="2">2 members</option>
+                <option value="3">3 members</option>
+                <option value="4">4 members</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="lead-name">Team lead name</label>
+              <input id="lead-name" name="lead-name" type="text" placeholder="Your full name" autocomplete="name" required />
+            </div>
+            <div class="form-field">
+              <label for="lead-email">Team lead email</label>
+              <input id="lead-email" name="lead-email" type="email" placeholder="you@example.com" autocomplete="email" required />
+            </div>
+            <div class="form-field">
+              <label for="institution">College / institution</label>
+              <input id="institution" name="institution" type="text" placeholder="Your institution name" autocomplete="organization" required />
+            </div>
+            <div class="form-field">
+              <label for="track">Preferred track</label>
+              <select id="track" name="track" required>
+                <option value="" selected disabled>Choose a track</option>
+                <option>AI for good</option>
+                <option>Climate &amp; sustainability</option>
+                <option>Health &amp; wellbeing</option>
+                <option>Open innovation</option>
+              </select>
+            </div>
+            <div class="form-field full">
+              <label for="idea">What might your team build? <span>(optional)</span></label>
+              <textarea id="idea" name="idea" placeholder="A sentence or two about the problem you want to solve"></textarea>
+            </div>
+            <label class="consent" for="guidelines-consent">
+              <input id="guidelines-consent" name="guidelines-consent" type="checkbox" required />
+              <span>I confirm that our team meets the sample eligibility requirements and agrees to follow the event guidelines.</span>
+            </label>
+            <button class="button submit-button" type="submit">Register your team <span aria-hidden="true">↗</span></button>
+            <p class="form-response" id="form-response" role="status" aria-live="polite"></p>
+            <p class="form-disclaimer">Sample event registration. Your team lead's contact details will be stored for event coordination.</p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner container">
+        <p>© 2027 Build for Tomorrow · Sample event concept</p>
+        <div class="footer-links">
+          <a href="#details">Guidelines</a>
+          <a href="mailto:hello@buildfortomorrow.example">Contact organizers</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const registrationForm = document.querySelector("#registration-form");
+      const formResponse = document.querySelector("#form-response");
+
+      registrationForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const submitButton = registrationForm.querySelector('button[type="submit"]');
+        const formData = Object.fromEntries(new FormData(registrationForm));
+        formData["team-size"] = Number(formData["team-size"]);
+        formData["guidelines-consent"] = registrationForm.elements["guidelines-consent"].checked;
+        formResponse.textContent = "Submitting your registration…";
+        submitButton.disabled = true;
+
+        let response;
+        try {
+          response = await fetch("/api/registrations", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
+          });
+        } catch {
+          formResponse.textContent = "Could not reach the registration server. Check that it is running and try again.";
+          submitButton.disabled = false;
+          return;
+        }
+
+        let result;
+        try {
+          result = await response.json();
+        } catch {
+          formResponse.textContent = "The server returned an unreadable response. Please try again.";
+          submitButton.disabled = false;
+          return;
+        }
+
+        if (!response.ok) {
+          formResponse.textContent = result.error || "Registration failed. Please review your details and try again.";
+          submitButton.disabled = false;
+          return;
+        }
+
+        formResponse.textContent = `Thanks, ${result.team_name}! Your registration was received. Reference #${result.registration_id}.`;
+        registrationForm.reset();
+        submitButton.disabled = false;
+      });
+    </script>
+  </body>
+</html>
